@@ -9,34 +9,16 @@ package entity;
  *
  * @author pupil
  */
-public class Reader {
+public class Author {
     private String firstname;
     private String lastname;
-    private String phone;
 
-    public Reader() {
+    public Author() {
     }
 
-    public Reader(String firstname, String lastname, String phone) {
+    public Author(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.phone = phone;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -47,9 +29,20 @@ public class Reader {
         this.lastname = lastname;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
     @Override
     public String toString() {
-        return "Reader{" + "firstname=" + firstname + ", lastname=" + lastname + ", phone=" + phone + '}';
+        return "Author{"
+                + "firstname=" + firstname 
+                + ", lastname=" + lastname 
+                + '}';
     }
     
     
