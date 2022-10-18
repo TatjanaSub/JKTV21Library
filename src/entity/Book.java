@@ -16,6 +16,7 @@ public class Book {
     private Author[] authors = new Author[0];
 
     public Book() {
+        
     }
 
     public Book(String title, Author[] authors) {

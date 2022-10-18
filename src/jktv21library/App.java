@@ -33,6 +33,7 @@ public class App {
         bookManager = new BookManager();
         readerManager = new ReaderManager();
         historyManager = new HistoryManager();
+        
         books = new Book[0];
         readers = new Reader[0];
         histories = new History[0];
@@ -43,65 +44,65 @@ public class App {
     public void run(){
         boolean repeat = true;
         do{
-            System.out.println("Funktsii prilizenija:");
-            System.out.println("0. Zakrqt' prilozenie");
-            System.out.println("1. Dobavit' knigu" );
-            System.out.println("2. Dobavit' chitatelja");
-            System.out.println("3. Vqdat' knigu");
-            System.out.println("4. Vernut' knigu");
-            System.out.println("5. Spisok knig");
-            System.out.println("6. Spisok chitateley");
-            System.out.print("Vqberite nomer funktsii:");
+            System.out.println("Функции приложения:");
+            System.out.println("0. Закрыть приложение");
+            System.out.println("1. Добавить книгу" );
+            System.out.println("2. Добавить читателя");
+            System.out.println("3. Выдать книгу");
+            System.out.println("4. Вернуть книгу");
+            System.out.println("5. Список книг");
+            System.out.println("6. Список читателей");
+            System.out.print("Выберите номер функции: ");
             int task = scanner.nextInt();
             scanner.nextLine();
             switch (task){
                 case 0:
-                    System.out.println("0. Zakrqt' prilozenie");
+                    System.out.println("0. Закрыть приложение");
                     repeat = false;
                     break;
                 case 1:
-                    System.out.println("Vybrana zadacha: 1. Dobavit' knigu");
+                    System.out.println("Выбрана задача: 1. Добавить книгу");
                     addBook(bookManager.createBook());
                     break;
                 case 2:
-                    System.out.println("2. Dobavit' chitatelja");
+                    System.out.println("2. Добавить читателя");
                     addReader(readerManager.createReader());
                     break;
                 case 3:
-                    System.out.println("3. Vqdat' knigu");
-                    //addHistory(historyManager.createHistory());
+                    System.out.println("3. Выдать книгу");
+                    addHistory(historyManager.takeOnBook(readers,books));
                     break;
                 case 4:
-                    System.out.println("4. Vernut' knigu");
+                    System.out.println("4. Вернуть книгу");
+                    
                     break;
                 case 5:
-                    System.out.println("5. Spisok knig");
+                    System.out.println("5. Список книг");
                     bookManager.printListBooks(books);
                     break;
                 case 6:
-                    System.out.println("6. Spisok chitateley");
+                    System.out.println("6. Список читателей");
                     readerManager.printListReaders(readers);
                     break;
                 default:
-                    System.out.println("Vqberite nomer funktsii iz spiska!");
+                    System.out.println("Выберите номер функции из списка!");
             }
         }while(repeat);
-        System.out.println("Poka!");
+        System.out.println("Пока!");
     }
 
     private void addBook(Book book){
-        books = Arrays.copyOf(books, books.length+1);
-        books[books.length-1] = book;
+        books = Arrays.copyOf(books, books.length + 1);
+        books[books.length - 1] = book;
     }
     
     private void addReader(Reader reader){
-        readers = Arrays.copyOf(readers, readers.length+1);
-        readers[readers.length-1] = reader;
+        readers = Arrays.copyOf(readers, readers.length + 1);
+        readers[readers.length - 1] = reader;
     }
-    
     private void addHistory(History history){
-        histories = Arrays.copyOf(histories, histories.length+1);
-        histories[histories.length-1] = history;
+        histories = Arrays.copyOf(histories, histories.length + 1);
+        histories[histories.length - 1] = history;
     }
     
     private void testAddBook(){
@@ -117,4 +118,6 @@ public class App {
         readers = Arrays.copyOf(readers, readers.length + 1);
         readers[readers.length - 1] = reader;
     }
+    
+    
 }

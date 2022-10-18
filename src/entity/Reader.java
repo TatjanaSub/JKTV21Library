@@ -23,8 +23,6 @@ public class Reader {
         this.phone = phone;
     }
 
-   
-
     public String getPhone() {
         return phone;
     }

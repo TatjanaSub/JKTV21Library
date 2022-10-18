@@ -21,17 +21,17 @@ public class ReaderManager {
     
     public Reader createReader(){
         Reader reader = new Reader();
-        System.out.print("Vvedite imja chitatelja: ");
+        System.out.print("Имя читателя: ");
         reader.setFirstname(scanner.nextLine());
-        System.out.print("Vvedite familiju chitatelja: ");
+        System.out.print("Фамилия читателя: ");
         reader.setLastname(scanner.nextLine());
-        System.out.print("Vvedite telefon chitatelja: ");
+        System.out.print("Телефон читателя: ");
         reader.setPhone(scanner.nextLine());
         return reader;
     }
     public void printListReaders(Reader[] readers ){
         for (int i = 0; i < readers.length; i++) {
-            System.out.printf("%d. %s %s. Telefon: %s%n",i+1,
+            System.out.printf("%d. %s %s. Телефон: %s%n",i+1,
                     readers[i].getFirstname(),
                     readers[i].getLastname(),
                     readers[i].getPhone());

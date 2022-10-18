@@ -5,7 +5,10 @@
  */
 package managers;
 
+import entity.Book;
 import entity.History;
+import entity.Reader;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -24,29 +27,25 @@ public class HistoryManager {
     }
     
     public History takeOnBook(Reader[] readers, Book[] books){
-        //iz spiska chitatelei vybrat nomer chitatelja
-        // iz spiska knig vybrat nomer knigi
-        // initsiirovat polja History
-        // dobavit daty vydachi knigi
-        System.out.println("Spisok chitatelei:");
+        //из списка читателей выбрать номер читателя
+        //из списка книг выбрать номер книги
+        //инициировать поля History
+        //добавить дату выдачи книги
+        System.out.println("Список читателей:");
         readerManager.printListReaders(readers);
-        System.out.println("Vyberite nomer chitatelja iz spiska:");
+        System.out.print("Выберите номер читателя из списка:");
         int numberReader = scanner.nextInt();
         scanner.nextLine();
         
-        System.out.println("Spisok knig:");
-        bookManager.printListReaders(readers);
-        System.out.println("Vyberite nomer knigi iz spiska:");
+        System.out.println("Список книг:");
+        bookManager.printListBooks(books);
+        System.out.println("Выберите номер книги из списка:");
         int numberBook = scanner.nextInt();
         scanner.nextLine();
         History history = new History();
         history.setBook(books[numberBook - 1]);
         history.setReader(readers[numberReader - 1]);
-    }
-    
-    public History createHistory(){
-        History history = new History();
+        history.setTakeOnBook(new GregorianCalendar().getTime());
         return history;
     }
-    
 }

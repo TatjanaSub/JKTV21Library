@@ -23,9 +23,9 @@ public class BookManager {
     
     public Book createBook(){
         Book book = new Book();
-        System.out.println("Vvedite nazvanie knigi: ");
+        System.out.print("Введите название книги: ");
         book.setTitle(scanner.nextLine());
-        System.out.print("Ukazite kollichestvo avtorov: ");
+        System.out.print("Укажите количество авторов: ");
         int countAuthorsInBook = scanner.nextInt();
         scanner.nextLine();
         for (int i = 0; i < countAuthorsInBook; i++) {
@@ -36,9 +36,9 @@ public class BookManager {
     
     private Author createAuthor() {
         Author author = new Author();
-        System.out.println("Vvedite imja: ");
+        System.out.println("Введите имя: ");
         author.setFirstname(scanner.nextLine());
-        System.out.println("Vvedite familiju: ");
+        System.out.println("Введите фамилию: ");
         author.setLastname(scanner.nextLine());
         return author;
     }
