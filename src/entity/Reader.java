@@ -23,6 +23,8 @@ public class Reader {
         this.phone = phone;
     }
 
+   
+
     public String getPhone() {
         return phone;
     }
@@ -49,7 +51,11 @@ public class Reader {
 
     @Override
     public String toString() {
-        return "Reader{" + "firstname=" + firstname + ", lastname=" + lastname + ", phone=" + phone + '}';
+        return "Reader{" 
+                + "firstname=" + firstname 
+                + ", lastname=" + lastname 
+                + ", phone=" + phone 
+                + '}';
     }
     
     

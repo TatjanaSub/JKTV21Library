@@ -11,14 +11,34 @@ import entity.History;
 import entity.Reader;
 import java.util.Arrays;
 import java.util.Scanner;
+import managers.BookManager;
+import managers.HistoryManager;
+import managers.ReaderManager;
 
 /**
  *
  * @author pupil
  */
 public class App {
-    private Scanner scanner = new Scanner(System.in);
-    private Book[] books = new Book[0];
+    private final Scanner scanner;
+    private final BookManager bookManager;
+    private final ReaderManager readerManager;
+    private final HistoryManager historyManager;
+    private Book[] books;
+    private Reader[] readers;
+    private History[] histories;
+
+    public App() {
+        scanner = new Scanner(System.in);
+        bookManager = new BookManager();
+        readerManager = new ReaderManager();
+        historyManager = new HistoryManager();
+        books = new Book[0];
+        readers = new Reader[0];
+        histories = new History[0];
+        testAddBook();
+        testAddReader();
+    }
     
     public void run(){
         boolean repeat = true;
@@ -30,7 +50,7 @@ public class App {
             System.out.println("3. Vqdat' knigu");
             System.out.println("4. Vernut' knigu");
             System.out.println("5. Spisok knig");
-            System.out.println("6. Spisok avtorov");
+            System.out.println("6. Spisok chitateley");
             System.out.print("Vqberite nomer funktsii:");
             int task = scanner.nextInt();
             scanner.nextLine();
@@ -40,46 +60,27 @@ public class App {
                     repeat = false;
                     break;
                 case 1:
-                    System.out.println("1. Dobavit' knigu");
-                    Book book = new Book();
-                    System.out.println("Vvedite nazvanie knigi: ");
-                    book.setTitle(scanner.nextLine());
-                    System.out.print("Ukazite kollichestvo avtorov: ");
-                    int countAuthorsInBook = scanner.nextInt();
-                    scanner.nextLine();
-                    for (int i = 0; i < countAuthorsInBook; i++) {
-                        book.addAuthor(createAuthor());
-                    }
-                    Book[] newBook = Arrays.copyOf(books, books.length+1);
-                    newBook[newBook.length-1] = book;
-                    books = newBook;
+                    System.out.println("Vybrana zadacha: 1. Dobavit' knigu");
+                    addBook(bookManager.createBook());
                     break;
                 case 2:
                     System.out.println("2. Dobavit' chitatelja");
-                    Reader reader = new Reader();
+                    addReader(readerManager.createReader());
                     break;
                 case 3:
                     System.out.println("3. Vqdat' knigu");
-                    History history = new History();
+                    //addHistory(historyManager.createHistory());
                     break;
                 case 4:
                     System.out.println("4. Vernut' knigu");
                     break;
                 case 5:
                     System.out.println("5. Spisok knig");
-                    for (int i = 0; i < books.length; i++) {
-                        Book book1 = books[i];
-                        System.out.printf(i+1+". %s. ",book1.getTitle());
-                        for (int j = 0; j < book1.getAuthors().length; j++) {
-                            System.out.printf("%s %s.%n",
-                                    book1.getAuthors()[j].getFirstname(),
-                                    book1.getAuthors()[j].getLastname());
-                            
-                        }
-                    }
+                    bookManager.printListBooks(books);
                     break;
                 case 6:
-                    System.out.println("6. Spisok avtorov");
+                    System.out.println("6. Spisok chitateley");
+                    readerManager.printListReaders(readers);
                     break;
                 default:
                     System.out.println("Vqberite nomer funktsii iz spiska!");
@@ -88,12 +89,32 @@ public class App {
         System.out.println("Poka!");
     }
 
-    private Author createAuthor() {
-        Author author = new Author();
-        System.out.println("Vvedite imja: ");
-        author.setFirstname(scanner.nextLine());
-        System.out.println("Vvedite familiju: ");
-        author.setLastname(scanner.nextLine());
-        return author;
+    private void addBook(Book book){
+        books = Arrays.copyOf(books, books.length+1);
+        books[books.length-1] = book;
+    }
+    
+    private void addReader(Reader reader){
+        readers = Arrays.copyOf(readers, readers.length+1);
+        readers[readers.length-1] = reader;
+    }
+    
+    private void addHistory(History history){
+        histories = Arrays.copyOf(histories, histories.length+1);
+        histories[histories.length-1] = history;
+    }
+    
+    private void testAddBook(){
+        Book book = new Book();
+        book .setTitle("Voina i mir");
+        Author author = new Author("Lev", "Tolstoi");
+        book.addAuthor(author);
+        this.books = Arrays.copyOf(this.books, this.books.length + 1);
+        this.books[this.books.length - 1] = book;
+    }
+    private void testAddReader(){
+        Reader reader = new Reader("Ivan", "Ivanov", "53912933");
+        readers = Arrays.copyOf(readers, readers.length + 1);
+        readers[readers.length - 1] = reader;
     }
 }
