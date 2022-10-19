@@ -54,4 +54,9 @@ public class BookManager {
             }
         }
     }
+
+    public Book[] changeBook(Book[] books) {
+        
+        return books;
+    }
 }
