@@ -31,41 +31,42 @@ public class ReaderManager {
     }
     public void printListReaders(Reader[] readers ){
         for (int i = 0; i < readers.length; i++) {
-            System.out.printf("%d. %s %s. Телефон: %s%n",i+1,
+            System.out.printf("%d. %s %s. Телефон: %s%n",
+                    i+1,
                     readers[i].getFirstname(),
                     readers[i].getLastname(),
-                    readers[i].getPhone());
+                    readers[i].getPhone()
+            );
         }
     }
 
     public Reader[] changeReader(Reader[] readers) {
-        System.out.println("Spisok chitatelei: ");
+        System.out.println("Список читателей: ");
         this.printListReaders(readers);
-        System.out.println("Vyberite nomer chitatelja iz spiska: ");
+        System.out.println("Выберите номер читателя из списка: ");
         int numberReader = scanner.nextInt(); scanner.nextLine();
-        System.out.println("Imja: " + readers[numberReader - 1].getFirstname());
-        System.out.println("Zamenit? (y/n): ");
+        System.out.println("Имя: " + readers[numberReader - 1].getFirstname());
+        System.out.println("Заменить? (y/n): ");
         String task = scanner.nextLine();
         if("y".equals(task)){
-            System.out.println("Vvedite novoe imja: ");
+            System.out.println("Введите новое имя: ");
             readers[numberReader - 1].setFirstname(scanner.nextLine());
         }
-        System.out.println("Familija: " + readers[numberReader - 1].getLastname());
-        System.out.println("Zamenit? (y/n): ");
+        System.out.println("Фамилия: " + readers[numberReader - 1].getLastname());
+        System.out.println("Заменить? (y/n): ");
         task = scanner.nextLine();
         if("y".equals(task)){
-            System.out.println("Vvedite novuju familiju: ");
+            System.out.println("Введите новую фамилию: ");
             readers[numberReader - 1].setLastname(scanner.nextLine());
         }
-        System.out.println("Telefon: " + readers[numberReader - 1].getPhone());
-        System.out.println("Zamenit? (y/n): ");
+        System.out.println("Телефон: " + readers[numberReader - 1].getPhone());
+        System.out.println("Заменить? (y/n): ");
         task = scanner.nextLine();
         if("y".equals(task)){
-            System.out.println("Vvedite novui telefon: ");
+            System.out.println("Введите новый телефон: ");
             readers[numberReader - 1].setPhone(scanner.nextLine());
         }
-        System.out.println("Izmenennyi chitatel: "+readers[numberReader - 1].toString());
+        System.out.println("Измененный читатель: "+readers[numberReader - 1].toString());
         return readers;
     }
-    
 }

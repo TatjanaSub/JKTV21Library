@@ -52,9 +52,9 @@ public class App {
             System.out.println("4. Вернуть книгу");
             System.out.println("5. Список книг");
             System.out.println("6. Список читателей");
-            System.out.println("7. Список vydannyh knig");
-            System.out.println("8. Izmenit dannye chitatelja");
-            System.out.println("9. Redaktirovanie knigi");
+            System.out.println("7. Список выданных книг");
+            System.out.println("8. Изменить данные читателя");
+            System.out.println("9. Редактирование книги");
             System.out.print("Выберите номер функции: ");
             int task = scanner.nextInt();
             scanner.nextLine();
@@ -88,15 +88,15 @@ public class App {
                     readerManager.printListReaders(readers);
                     break;
                 case 7:
-                    System.out.println("7. Список vydannyh knig");
+                    System.out.println("7. Список выданных книг");
                     historyManager.printListReadingBooks(histories);
                     break;
                 case 8:
-                    System.out.println("8. Izmenit dannye chitatelja");
+                    System.out.println("8. Изменить данные читателя");
                     readers = readerManager.changeReader(readers);
                     break;
                 case 9:
-                    System.out.println("9. Redaktirovanie knigi");
+                    System.out.println("9. Редактирование книги");
                     books = bookManager.changeBook(books);
                     break;
                 default:
@@ -133,6 +133,4 @@ public class App {
         readers = Arrays.copyOf(readers, readers.length + 1);
         readers[readers.length - 1] = reader;
     }
-    
-    
 }
