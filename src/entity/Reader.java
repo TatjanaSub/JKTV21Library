@@ -5,11 +5,12 @@
  */
 package entity;
 
+
 /**
  *
  * @author pupil
  */
-public class Reader {
+public class Reader{
     private String firstname;
     private String lastname;
     private String phone;
