@@ -9,16 +9,8 @@ import entity.Author;
 import entity.Book;
 import entity.History;
 import entity.Reader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import managers.BookManager;
 import managers.DataManager;
 import managers.HistoryManager;
@@ -45,10 +37,10 @@ public class App {
         historyManager = new HistoryManager();
         dataManager = new DataManager();
         books = dataManager.loadBooksFromFile();
-        readers = new Reader[0];
-        histories = new History[0];
+        readers = dataManager.loadReadersFromFile();
+        histories = dataManager.loadHistoriesFromFile();
         //testAddBook();
-        testAddReader();
+        //testAddReader();
     }
     
     public void run(){
@@ -66,8 +58,18 @@ public class App {
             System.out.println("8. Изменить данные читателя");
             System.out.println("9. Редактирование книги");
             System.out.print("Выберите номер функции: ");
-            int task = scanner.nextInt();
-            scanner.nextLine();
+            int task = 0;
+            do {                    
+                if (scanner.hasNextInt()){
+                    task = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }else{
+                    System.out.println("Вы ввели не целое число!");
+                    System.out.print("Выберите номер функции: ");
+                    scanner.nextLine();
+                }
+            } while (true);
             switch (task){
                 case 0:
                     System.out.println("0. Закрыть приложение");
@@ -81,10 +83,12 @@ public class App {
                 case 2:
                     System.out.println("2. Добавить читателя");
                     addReader(readerManager.createReader());
+                    dataManager.saveReadersToFile(readers);
                     break;
                 case 3:
                     System.out.println("3. Выдать книгу");
                     addHistory(historyManager.takeOnBook(readers,books));
+                    dataManager.saveHistoriesToFile(histories);
                     break;
                 case 4:
                     System.out.println("4. Вернуть книгу");
@@ -131,19 +135,19 @@ public class App {
         histories[histories.length - 1] = history;
     }
     
-    private void testAddBook(){
-        Book book = new Book();
-        book .setTitle("Voina i mir");
-        Author author = new Author("Lev", "Tolstoi");
-        book.addAuthor(author);
-        this.books = Arrays.copyOf(this.books, this.books.length + 1);
-        this.books[this.books.length - 1] = book;
-    }
-    private void testAddReader(){
-        Reader reader = new Reader("Ivan", "Ivanov", "53912933");
-        readers = Arrays.copyOf(readers, readers.length + 1);
-        readers[readers.length - 1] = reader;
-    }
+//    private void testAddBook(){
+//        Book book = new Book();
+//        book .setTitle("Voina i mir");
+//        Author author = new Author("Lev", "Tolstoi");
+//        book.addAuthor(author);
+//        this.books = Arrays.copyOf(this.books, this.books.length + 1);
+//        this.books[this.books.length - 1] = book;
+//    }
+//    private void testAddReader(){
+//        Reader reader = new Reader("Ivan", "Ivanov", "53912933");
+//        readers = Arrays.copyOf(readers, readers.length + 1);
+//        readers[readers.length - 1] = reader;
+//    }
 
     
 }

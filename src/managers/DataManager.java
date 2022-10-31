@@ -6,6 +6,8 @@
 package managers;
 
 import entity.Book;
+import entity.History;
+import entity.Reader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,7 +24,9 @@ import java.util.logging.Logger;
  */
 public class DataManager {
     private final String FILENAME_BOOKS = "files/MyBooks";
-   private File file; 
+    private final String FILENAME_READERS = "files/MyReaders";
+    private final String FILENAME_HISTORIES = "files/MyHistories";
+    private File file; 
     public DataManager() {
         file = new File("files");
         file.mkdirs();
@@ -33,9 +37,9 @@ public class DataManager {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(books);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Net takogo faila", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Oshibka vvoda/vyvoda", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
         }
     }
     
@@ -46,13 +50,69 @@ public class DataManager {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             books = (Book[]) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Net takogo faila", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Oshibka vvoda / vyvoda", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Net takogo klassa", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
         }
         return books;
+    }
+
+    public void saveReadersToFile(Reader[] readers) {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_READERS);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(readers);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+        }
+    }
+
+    public Reader[] loadReadersFromFile() {
+        Reader[] readers = new Reader[0];
+        try {
+            FileInputStream fileInputStream = new FileInputStream(FILENAME_READERS);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            readers = (Reader[]) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+        }
+        return readers;
+    }
+
+    public void saveHistoriesToFile(History[] histories) {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_HISTORIES);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(histories);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+        }
+    }
+
+    public History[] loadHistoriesFromFile() {
+        History[] histories = new History[0];
+        try {
+            FileInputStream fileInputStream = new FileInputStream(FILENAME_HISTORIES);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            histories = (History[]) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+        }
+        return histories;
     }
 
 }
