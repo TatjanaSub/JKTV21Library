@@ -30,7 +30,6 @@ public class App {
     private Reader[] readers;
     private History[] histories;
 
-    
     public App() {
         scanner = new Scanner(System.in);
         bookManager = new BookManager();
