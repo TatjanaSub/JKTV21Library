@@ -25,11 +25,12 @@ public class App {
     private final BookManager bookManager;
     private final ReaderManager readerManager;
     private final HistoryManager historyManager;
-    private DataManager dataManager;
+    private final DataManager dataManager;
     private Book[] books;
     private Reader[] readers;
     private History[] histories;
 
+    
     public App() {
         scanner = new Scanner(System.in);
         bookManager = new BookManager();
