@@ -93,27 +93,15 @@ public class BookManager {
                         newAuthor.setLastname(scanner.nextLine());
                         books[numBookForEdit - 1].addAuthor(newAuthor);
                     } else {
-                        // изменяем существующих авторов книги
-                        System.out.println(i+1+"-й автор: "
-                            +books[numBookForEdit - 1].getAuthors()[i].getFirstname()+" "+
-                            books[numBookForEdit - 1].getAuthors()[i].getLastname());
-                        System.out.println("Изменить имя автора? (y/n)");
-                        edit = scanner.nextLine();
-                        if(edit.equals("y")){
-                            System.out.println("Введите новое имя автора: ");
-                            books[numBookForEdit - 1].getAuthors()[i].setFirstname(scanner.nextLine());
-                        }
-                        System.out.println("Изменить фамилию автора? (y/n)");
-                        edit = scanner.nextLine();
-                        if(edit.equals("y")){
-                            System.out.println("Введите новую фамилию автора: ");
-                            books[numBookForEdit - 1].getAuthors()[i].setLastname(scanner.nextLine());
-                        }
+                        books[numBookForEdit - 1] = changeAuthorBook(books[numBookForEdit - 1]);
                     }
-                    
                 }
             }
-            
+        }
+        System.out.println("Изменить существующих авторов? (y/n)");
+        edit = scanner.nextLine();
+        if(edit.equals("y")){// Меняем существующих авторов
+            books[numBookForEdit-1] = changeAuthorBook(books[numBookForEdit-1]);
         }
         return books;
     }
@@ -140,6 +128,27 @@ public class BookManager {
         int numDeleteAuthor = scanner.nextInt();
         scanner.nextLine();
         book.removeAuthor(numDeleteAuthor);
+        return book;
+    }
+    private Book changeAuthorBook(Book book){
+        for (int i = 0; i < book.getAuthors().length; i++) {
+            //изменяем существующих авторов книги
+            System.out.println(i+1+"-й автор: "
+                +book.getAuthors()[i].getFirstname()+" "+
+                book.getAuthors()[i].getLastname());
+            System.out.println("Изменить имя автора? (y/n)");
+            String edit = scanner.nextLine();
+            if(edit.equals("y")){
+                System.out.println("Введите новое имя автора: ");
+                book.getAuthors()[i].setFirstname(scanner.nextLine());
+            }
+            System.out.println("Изменить фамилию автора? (y/n)");
+            edit = scanner.nextLine();
+            if(edit.equals("y")){
+                System.out.println("Введите новую фамилию автора: ");
+                book.getAuthors()[i].setLastname(scanner.nextLine());
+            }
+        }
         return book;
     }
 }

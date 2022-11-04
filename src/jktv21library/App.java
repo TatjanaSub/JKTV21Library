@@ -109,10 +109,12 @@ public class App {
                 case 8:
                     System.out.println("8. Изменить данные читателя");
                     readers = readerManager.changeReader(readers);
+                    dataManager.saveReadersToFile(readers);
                     break;
                 case 9:
                     System.out.println("9. Редактирование книги");
                     books = bookManager.changeBook(books);
+                    dataManager.saveBooksToFile(books);
                     break;
                 default:
                     System.out.println("Выберите номер функции из списка!");
