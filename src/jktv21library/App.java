@@ -10,6 +10,7 @@ import entity.Book;
 import entity.History;
 import entity.Reader;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import managers.BookManager;
 import managers.DataManager;
@@ -26,9 +27,12 @@ public class App {
     private final ReaderManager readerManager;
     private final HistoryManager historyManager;
     private final DataManager dataManager;
-    private Book[] books;
-    private Reader[] readers;
-    private History[] histories;
+    private List<Book> books;
+//    private Book[] books;
+    private List<Reader> readers;
+//    private Reader[] readers;
+    private List<History> histories;
+//    private History[] histories;
 
     public App() {
         scanner = new Scanner(System.in);
@@ -77,7 +81,7 @@ public class App {
                     break;
                 case 1:
                     System.out.println("Выбрана задача: 1. Добавить книгу");
-                    addBook(bookManager.createBook());
+                    books.add(bookManager.createBook());
                     dataManager.saveBooksToFile(books);
                     break;
                 case 2:
@@ -87,7 +91,7 @@ public class App {
                     break;
                 case 3:
                     System.out.println("3. Выдать книгу");
-                    addHistory(historyManager.takeOnBook(readers,books));
+                    histories.add(historyManager.takeOnBook(readers,books));
                     dataManager.saveHistoriesToFile(histories);
                     break;
                 case 4:
@@ -123,10 +127,10 @@ public class App {
         System.out.println("Пока!");
     }
 
-    private void addBook(Book book){
-        books = Arrays.copyOf(books, books.length + 1);
-        books[books.length - 1] = book;
-    }
+//    private void addBook(Book book){
+//        books = Arrays.copyOf(books, books.length + 1);
+//        books[books.length - 1] = book;
+//    }
     
     private void addReader(Reader reader){
         readers = Arrays.copyOf(readers, readers.length + 1);
