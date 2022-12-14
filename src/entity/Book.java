@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Book implements Serializable{
     private String title;
-    private List<Author> authors = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>(); 
 
     public Book() {
         
@@ -47,8 +47,8 @@ public class Book implements Serializable{
     @Override
     public String toString() {
         return "Book{"
-                + "title=" + title
-                + ", authors=" + Arrays.toString(authors.toArray()) 
+                + "title=" + title 
+                + ", authors=" + Arrays.toString(authors.toArray())
                 + '}';
     }
 
@@ -59,4 +59,7 @@ public class Book implements Serializable{
     public void removeAuthor(int indexRmAuthor){
         this.authors.remove(indexRmAuthor);
     }
+    
+    
+    
 }

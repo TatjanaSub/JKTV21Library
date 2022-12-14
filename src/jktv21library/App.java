@@ -30,7 +30,7 @@ public class App {
     private List<Book> books;
 //    private Book[] books;
     private List<Reader> readers;
-//    private Reader[] readers;
+    //private Reader[] readers;
     private List<History> histories;
 //    private History[] histories;
 
@@ -43,8 +43,6 @@ public class App {
         books = dataManager.loadBooksFromFile();
         readers = dataManager.loadReadersFromFile();
         histories = dataManager.loadHistoriesFromFile();
-        //testAddBook();
-        //testAddReader();
     }
     
     public void run(){
@@ -52,7 +50,7 @@ public class App {
         do{
             System.out.println("Функции приложения:");
             System.out.println("0. Закрыть приложение");
-            System.out.println("1. Добавить книгу" );
+            System.out.println("1. Добавить книгу");
             System.out.println("2. Добавить читателя");
             System.out.println("3. Выдать книгу");
             System.out.println("4. Вернуть книгу");
@@ -62,19 +60,9 @@ public class App {
             System.out.println("8. Изменить данные читателя");
             System.out.println("9. Редактирование книги");
             System.out.print("Выберите номер функции: ");
-            int task = 0;
-            do {                    
-                if (scanner.hasNextInt()){
-                    task = scanner.nextInt();
-                    scanner.nextLine();
-                    break;
-                }else{
-                    System.out.println("Вы ввели не целое число!");
-                    System.out.print("Выберите номер функции: ");
-                    scanner.nextLine();
-                }
-            } while (true);
-            switch (task){
+            int task = scanner.nextInt();
+            scanner.nextLine();
+            switch (task) {
                 case 0:
                     System.out.println("0. Закрыть приложение");
                     repeat = false;
@@ -86,17 +74,18 @@ public class App {
                     break;
                 case 2:
                     System.out.println("2. Добавить читателя");
-                    addReader(readerManager.createReader());
+                    readers.add(readerManager.createReader());
                     dataManager.saveReadersToFile(readers);
                     break;
                 case 3:
                     System.out.println("3. Выдать книгу");
-                    histories.add(historyManager.takeOnBook(readers,books));
+                    histories.add(historyManager.takeOnBook(readers, books));
                     dataManager.saveHistoriesToFile(histories);
                     break;
                 case 4:
                     System.out.println("4. Вернуть книгу");
                     histories = historyManager.returnBook(histories);
+                    dataManager.saveHistoriesToFile(histories);
                     break;
                 case 5:
                     System.out.println("5. Список книг");
@@ -132,14 +121,14 @@ public class App {
 //        books[books.length - 1] = book;
 //    }
     
-    private void addReader(Reader reader){
-        readers = Arrays.copyOf(readers, readers.length + 1);
-        readers[readers.length - 1] = reader;
-    }
-    private void addHistory(History history){
-        histories = Arrays.copyOf(histories, histories.length + 1);
-        histories[histories.length - 1] = history;
-    }
+//    private void addReader(Reader reader){
+//        readers = Arrays.copyOf(readers, readers.length + 1);
+//        readers[readers.length - 1] = reader;
+//    }
+//    private void addHistory(History history){
+//        histories = Arrays.copyOf(histories, histories.length + 1);
+//        histories[histories.length - 1] = history;
+//    }
     
 //    private void testAddBook(){
 //        Book book = new Book();

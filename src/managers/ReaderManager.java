@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class ReaderManager {
     private final Scanner scanner;
-    
+
     public ReaderManager() {
         scanner = new Scanner(System.in);
     }
@@ -29,11 +29,11 @@ public class ReaderManager {
         System.out.print("Телефон читателя: ");
         reader.setPhone(scanner.nextLine());
         return reader;
-    }
-    public void printListReaders(List<Reader> readers ){
+    } 
+    public void printListReaders(List<Reader> readers){
         for (int i = 0; i < readers.size(); i++) {
             System.out.printf("%d. %s %s. Телефон: %s%n"
-                    ,i+1
+                    , i+1
                     , readers.get(i).getFirstname()
                     , readers.get(i).getLastname()
                     , readers.get(i).getPhone()
@@ -41,8 +41,8 @@ public class ReaderManager {
         }
     }
 
-    public Reader[] changeReader(List<Reader> readers) {
-         System.out.println("Список читателей: ");
+    public List<Reader> changeReader(List<Reader> readers) {
+        System.out.println("Список читателей: ");
         this.printListReaders(readers);
         System.out.print("Выберите номер читателя из списка: ");
         int numberReader = scanner.nextInt(); scanner.nextLine();

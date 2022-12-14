@@ -28,12 +28,13 @@ public class DataManager {
     private final String FILENAME_BOOKS = "files/MyBooks";
     private final String FILENAME_READERS = "files/MyReaders";
     private final String FILENAME_HISTORIES = "files/MyHistories";
-    private File file; 
+    private final File file;
     public DataManager() {
         file = new File("files");
         file.mkdirs();
     }
-    public void saveBooksToFile(List<Book> books){
+    
+    public void saveBooksToFile(List<Book>  books){
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_BOOKS);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -42,12 +43,11 @@ public class DataManager {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
         }
     }
-    
-    public List<Book> loadBooksFromFile() {
-        List<Book> books = new ArrayList<>();
+    public List<Book>  loadBooksFromFile() {
+        List<Book>  books = new ArrayList<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME_BOOKS);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -62,7 +62,7 @@ public class DataManager {
         return books;
     }
 
-    public void saveReadersToFile(Reader[] readers) {
+    public void saveReadersToFile(List<Reader> readers) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_READERS);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -71,16 +71,15 @@ public class DataManager {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
         }
     }
-
-    public Reader[] loadReadersFromFile() {
-        Reader[] readers = new Reader[0];
+    public List<Reader> loadReadersFromFile() {
+        List<Reader> readers = new ArrayList<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME_READERS);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            readers = (Reader[]) objectInputStream.readObject();
+            readers = (List<Reader>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
@@ -90,8 +89,7 @@ public class DataManager {
         }
         return readers;
     }
-
-    public void saveHistoriesToFile(History[] histories) {
+    public void saveHistoriesToFile(List<History> histories) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_HISTORIES);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -100,16 +98,15 @@ public class DataManager {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
         }
     }
-
-    public History[] loadHistoriesFromFile() {
-        History[] histories = new History[0];
+    public List<History> loadHistoriesFromFile() {
+        List<History> histories = new ArrayList<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME_HISTORIES);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            histories = (History[]) objectInputStream.readObject();
+            histories = (List<History>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {
@@ -119,5 +116,4 @@ public class DataManager {
         }
         return histories;
     }
-
 }
